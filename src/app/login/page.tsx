@@ -21,23 +21,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen hero bg-base-200">
-      <div className="hero-content flex-col">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-primary">Ekklesia</h1>
-          <p className="py-6 text-base-content/70">
-            Faça login para acessar o sistema
-          </p>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-base-200">
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title justify-center mb-4">Login</h2>
 
-        <div className="card w-96 shadow-2xl bg-base-100">
           {error && (
-            <div className="alert alert-error mt-4 mx-8">
+            <div className="alert alert-error mb-4">
               <span>{error}</span>
             </div>
           )}
 
-          <form className="card-body" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">CPF</span>
@@ -48,26 +43,26 @@ export default function LoginPage() {
                 className="input input-bordered"
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
-                required
               />
             </div>
 
-            <div className="form-control">
+            <div className="form-control mt-4">
               <label className="label">
                 <span className="label-text">Senha</span>
               </label>
               <input
                 type="password"
-                placeholder="••••••••"
+                placeholder="Digite sua senha"
                 className="input input-bordered"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
-                required
               />
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Entrar</button>
+              <button type="submit" className="btn btn-primary">
+                Entrar
+              </button>
             </div>
           </form>
         </div>

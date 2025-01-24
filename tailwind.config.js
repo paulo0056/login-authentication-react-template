@@ -1,5 +1,8 @@
+import daisyui from 'daisyui';
+import daisyuiThemes from 'daisyui/src/theming/themes';
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,20 +11,22 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [daisyui],
   daisyui: {
     themes: [
       {
         light: {
-          ...require("daisyui/src/theming/themes")["light"],
-          "primary": "#3B82F6",           // Azul claro
-          "primary-focus": "#2563EB",     // Azul claro mais escuro
-          "base-100": "#FFFFFF",          // Branco
-          "base-200": "#F3F4F6",          // Cinza muito claro
-          "base-300": "#E5E7EB",          // Cinza claro
-          "base-content": "#1F2937",      // Texto escuro
+          ...daisyuiThemes["light"],
+          "primary": "#3B82F6",
+          "primary-focus": "#2563EB",
+          "base-100": "#FFFFFF",
+          "base-200": "#F3F4F6",
+          "base-300": "#E5E7EB",
+          "base-content": "#1F2937",
         },
       },
     ],
   },
 }
+
+export default config;

@@ -2,12 +2,12 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 
-export default function HomePage() {
+export default function ChurchControlPage() {
   const { logout } = useAuth();
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Sistema de Controle da Igreja</h1>
+      <h1>Sistema de Controle da Igreja</h1>
       <button onClick={logout} className="btn btn-primary">
         Sair
       </button>
