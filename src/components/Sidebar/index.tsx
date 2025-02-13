@@ -16,10 +16,7 @@ interface MenuItem {
   title: string;
   path?: string;
   icon: React.ReactNode;
-  submenu?: {
-    title: string;
-    path: string;
-  }[];
+  submenu?: { title: string; path: string }[];
 }
 
 const menuItems: MenuItem[] = [
@@ -31,17 +28,14 @@ const menuItems: MenuItem[] = [
   {
     title: "Membros",
     icon: <PeopleIcon className="w-5 h-5" />,
-    submenu: [
-      { title: "Lista de Membros", path: "/churchControl/members" },
-      { title: "Novo Membro", path: "/churchControl/members/new" },
-      { title: "Aniversariantes", path: "/churchControl/members/birthdays" },
-    ],
+    path: "/churchControl/members",
   },
   {
-    title: "Eventos",
+    title: "Financeiro",
     icon: <EventIcon className="w-5 h-5" />,
+    path: "/churchControl/financeiro",
     submenu: [
-      { title: "Calendário", path: "/churchControl/events" },
+      { title: "Calendário", path: "/churchControl/financeiro" },
       { title: "Novo Evento", path: "/churchControl/events/new" },
     ],
   },
@@ -60,8 +54,11 @@ export function Sidebar() {
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
   const { logout } = useAuth();
 
-  const toggleSubmenu = (title: string) => {
-    setExpandedSubmenu(expandedSubmenu === title ? null : title);
+  const handleMenuClick = (title: string, hasSubmenu: boolean) => {
+    if (!isExpanded && hasSubmenu) {
+      setIsExpanded(true); // Expande o sidebar se estiver retraído
+    }
+    setExpandedSubmenu(expandedSubmenu === title ? null : title); // Alterna o submenu
   };
 
   return (
@@ -93,7 +90,7 @@ export function Sidebar() {
               {item.submenu ? (
                 <div>
                   <button
-                    onClick={() => toggleSubmenu(item.title)}
+                    onClick={() => handleMenuClick(item.title, true)}
                     className={`flex items-center w-full p-2 rounded-lg hover:bg-gray-100 transition-colors ${
                       !isExpanded && "justify-center"
                     }`}
