@@ -32,7 +32,7 @@ export default function LoginPage() {
 
         <div className="card w-96 shadow-2xl bg-base-100">
           {error && (
-            <div className="alert alert-error mt-4 mx-8">
+            <div className="alert alert-error mt-4">
               <span>{error}</span>
             </div>
           )}

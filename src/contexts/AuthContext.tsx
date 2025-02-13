@@ -49,14 +49,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const { token } = await authService.login(credentials);
 
-      // Calcula a data de expiração (24 horas a partir de agora)
       const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
 
-      // Salva o token e sua data de expiração
       localStorage.setItem("token", token);
       localStorage.setItem("tokenExpiration", expirationTime.toString());
 
-      // Salva o token nos cookies com expiração
       Cookies.set("token", token, {
         expires: 1, // 1 dia
       });
