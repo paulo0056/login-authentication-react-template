@@ -1,16 +1,9 @@
 "use client";
 
-import { useAuth } from "@/contexts/AuthContext";
-
 export default function HomePage() {
-  const { logout } = useAuth();
-
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Sistema de Controle da Igreja</h1>
-      <button onClick={logout} className="btn btn-primary">
-        Sair
-      </button>
+    <div className="flex justify-center items-center h-screen">
+      <img src="/assets/bleia-logo.png" alt="bleia logo" />
     </div>
   );
 }

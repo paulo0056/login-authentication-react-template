@@ -8,8 +8,10 @@ export default function AuthenticatedLayout({
 }) {
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <Sidebar />
-      <main className="flex-1 p-8">{children}</main>
+      <div className="fixed top-0 left-0 h-full">
+        <Sidebar />
+      </div>
+      <div className="flex-1 ml-52 overflow-auto">{children}</div>
     </div>
   );
 }

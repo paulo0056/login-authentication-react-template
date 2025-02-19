@@ -6,6 +6,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useRef,
 } from "react";
 import { LoginCredentials, authService } from "@/services/auth";
 import Cookies from "js-cookie";
@@ -22,6 +23,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+  const initialRenderTime = useRef(Date.now());
 
   const logout = useCallback(() => {
     localStorage.removeItem("token");
@@ -36,7 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const tokenExpiration = localStorage.getItem("tokenExpiration");
 
     if (token && tokenExpiration) {
-      const isExpired = Date.now() > parseInt(tokenExpiration);
+      const isExpired = initialRenderTime.current > parseInt(tokenExpiration);
       if (isExpired) {
         logout();
       } else {
