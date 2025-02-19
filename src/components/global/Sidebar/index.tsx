@@ -49,16 +49,25 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-export function Sidebar() {
+export function Sidebar({
+  onToggle,
+}: {
+  onToggle: (expanded: boolean) => void;
+}) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
   const { logout } = useAuth();
 
   const handleMenuClick = (title: string, hasSubmenu: boolean) => {
     if (!isExpanded && hasSubmenu) {
-      setIsExpanded(true); // Expande o sidebar se estiver retraído
+      setIsExpanded(true);
     }
-    setExpandedSubmenu(expandedSubmenu === title ? null : title); // Alterna o submenu
+    setExpandedSubmenu(expandedSubmenu === title ? null : title);
+  };
+
+  const toggleSidebar = () => {
+    setIsExpanded(!isExpanded);
+    onToggle(!isExpanded);
   };
 
   return (
@@ -72,7 +81,7 @@ export function Sidebar() {
           <span className="text-xl font-semibold text-primary">Ekklesia</span>
         )}
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={toggleSidebar}
           className="p-2 rounded-lg hover:bg-gray-100"
         >
           {isExpanded ? (
